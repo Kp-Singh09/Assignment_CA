@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counsel Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Treatment Counselor</h1>
+        <form id="search-form">
+            <input type="text" id="query-input" placeholder="e.g., fine lines & wrinkles" required>
+            <button type="submit">Find Options</button>
+        </form>
+
+        <div id="concerns-tags-container"></div>
+
+        <div id="results-container" class="hidden">
+            <h2>Recommendations for "<span id="mapped-concern"></span>"</h2>
+            <div class="cards-container"></div>
+        </div>
+        <div id="error-message" class="hidden"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

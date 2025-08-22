@@ -1,0 +1,148 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+#search-form {
+    display: flex;
+    gap: 10px;
+}
+#query-input {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #008080; /* Changed to green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #006666; /* Darker green for hover */
+}
+#results-container {
+    margin-top: 30px;
+}
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fafafa;
+}
+.card .label {
+    font-weight: bold;
+    color: #008080; /* Changed to green */
+    margin-bottom: 8px;
+}
+.card h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+}
+.card .clinic {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 15px;
+}
+.card .price {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+.card .highlights {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: #555;
+}
+.card .breakdown {
+    font-size: 0.8em;
+    color: #888;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-bottom: 15px;
+}
+.hidden {
+    display: none;
+}
+#error-message {
+    margin-top: 20px;
+    color: #c0392b;
+    text-align: center;
+}
+#concerns-tags-container {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.concern-tag {
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+.concern-tag:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.score-container {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #888;
+    cursor: help;
+}
+.tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 220px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 1.4;
+}
+.score-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
