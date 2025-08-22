@@ -7,23 +7,21 @@ async function loadConcernTags() {
         const response = await fetch('/api/concerns');
         if (!response.ok) throw new Error('Failed to load concerns');
         const concerns = await response.json();
-        
+
         const container = document.getElementById('concerns-tags-container');
         const searchInput = document.getElementById('query-input');
-        const searchForm = document.getElementById('search-form'); // We keep this for context, but don't submit it
+        const searchForm = document.getElementById('search-form'); 
 
         concerns.forEach(concern => {
             const tag = document.createElement('button');
             tag.className = 'concern-tag';
             tag.textContent = concern.name;
             tag.type = 'button';
-            
-            // Updated click event listener
+
             tag.addEventListener('click', () => {
-                // This line populates the input box
+
                 searchInput.value = concern.name;
 
-                // The line that submitted the form (searchForm.requestSubmit();) has been REMOVED.
             });
 
             container.appendChild(tag);
@@ -81,7 +79,6 @@ function displayResults(curated) {
     uniquePackages.set(fasterRecovery.package.id, { pkg: fasterRecovery, label: 'Faster Recovery' });
     uniquePackages.set(budgetFriendly.package.id, { pkg: budgetFriendly, label: 'Budget-Friendly' });
 
-    // --- CARD HTML GENERATION IS UPDATED HERE ---
     uniquePackages.forEach(({ pkg, label }) => {
         const cardHTML = `
             <div class="card">
@@ -90,7 +87,7 @@ function displayResults(curated) {
                 <div class="clinic">${pkg.package.clinic_name}</div>
                 <div class="price">₹${pkg.package.price.toLocaleString('en-IN')}</div>
                 <div class="highlights">Highlights: ${pkg.package.highlights}</div>
-                
+
                 <div class="breakdown">
                     <div class="score-container">
                         Score: ${pkg.score}

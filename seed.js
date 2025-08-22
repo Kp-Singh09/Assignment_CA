@@ -1,7 +1,5 @@
-// seed.js
 const db = require('./database.js');
 
-// --- ADDED SYNONYMS DATA ---
 const concernsWithSynonyms = [
     { id: 1, name: "acne scars", synonyms: ["pimples", "scarring", "blemishes"] },
     { id: 2, name: "dark circles", synonyms: ["under eye bags", "panda eyes"] },
@@ -18,10 +16,9 @@ const concernsWithSynonyms = [
     { id: 13, name: "large pores", synonyms: ["open pores"] },
     { id: 14, name: "unwanted hair", synonyms: ["hair removal"] }
 ];
-// Extract just the concerns for the concerns table
+
 const concerns = concernsWithSynonyms.map(c => ({id: c.id, name: c.name}));
 
-// --- (The rest of your data like treatments, packages, etc. remains the same) ---
 const treatments = [
     { id: 1, name: "Laser Resurfacing", invasiveness: "non-invasive", typical_downtime_days: 3 },
     { id: 2, name: "Subcision + Fillers", invasiveness: "minimally-invasive", typical_downtime_days: 1 },
@@ -101,18 +98,16 @@ db.serialize(() => {
     db.run("DELETE FROM packages");
     db.run("DELETE FROM concern_treatments");
     db.run("DELETE FROM treatments");
-    db.run("DELETE FROM concern_synonyms"); // Clear synonyms table
+    db.run("DELETE FROM concern_synonyms"); 
     db.run("DELETE FROM concerns");
     console.log("Existing data deleted.");
-    
+
     console.log("Inserting new seed data...");
 
-    // Insert Concerns
     const insertConcern = db.prepare("INSERT INTO concerns (id, name) VALUES (?, ?)");
     concerns.forEach(c => insertConcern.run(c.id, c.name));
     insertConcern.finalize();
 
-    // Insert Synonyms
     const insertSynonym = db.prepare("INSERT INTO concern_synonyms (concern_id, synonym) VALUES (?, ?)");
     concernsWithSynonyms.forEach(c => {
         c.synonyms.forEach(synonym => {
@@ -120,8 +115,7 @@ db.serialize(() => {
         });
     });
     insertSynonym.finalize();
-    
-    // (The rest of the insertion logic is the same)
+
     const insertTreatment = db.prepare("INSERT INTO treatments (id, name, invasiveness, typical_downtime_days) VALUES (?, ?, ?, ?)");
     treatments.forEach(t => insertTreatment.run(t.id, t.name, t.invasiveness, t.typical_downtime_days));
     insertTreatment.finalize();

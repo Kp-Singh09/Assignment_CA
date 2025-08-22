@@ -11,13 +11,6 @@ yarn-debug.log
 .env.local
 .env.*.local
 
-# SQLite Database File
-# NOTE: For a simple read-only deployment on Netlify/Vercel, you need
-# to commit your data.db file, so this line should be commented out.
-# For a platform with a persistent disk like Render, it's better to
-# uncomment this line and let the server generate the file.
-# data.db
-
 # IDE/Editor directories
 .vscode/
 .idea/

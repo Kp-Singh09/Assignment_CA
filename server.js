@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const db = require('./database.js');
 const app = express();
@@ -26,9 +25,6 @@ app.post('/api/counsel', async (req, res) => {
     if (!q) return res.status(400).json({ error: 'Query "q" is required.' });
 
     try {
-        // --- FIXED CONCERN MAPPING LOGIC ---
-
-        // 1. Fetch all concerns and their synonyms in one go.
         const allConcernsWithSynonyms = await new Promise((resolve, reject) => {
             const sql = `
                 SELECT c.id, c.name, GROUP_CONCAT(s.synonym) as synonyms
@@ -41,16 +37,13 @@ app.post('/api/counsel', async (req, res) => {
             });
         });
 
-        // 2. Find a match using reliable JavaScript logic.
         const lowerCaseQuery = q.toLowerCase();
         let mappedConcern = null;
         for (const concern of allConcernsWithSynonyms) {
-            // Check if the user's query includes the main concern name
             if (lowerCaseQuery.includes(concern.name)) {
                 mappedConcern = { id: concern.id, name: concern.name };
                 break;
             }
-            // If not, check if the user's query includes any of the synonyms
             if (concern.synonyms) {
                 const synonymList = concern.synonyms.split(',');
                 if (synonymList.some(syn => lowerCaseQuery.includes(syn))) {

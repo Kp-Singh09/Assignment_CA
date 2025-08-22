@@ -1,4 +1,3 @@
-// database.js
 const sqlite3 = require('sqlite3').verbose();
 const DBSOURCE = "data.db";
 
@@ -14,7 +13,6 @@ const db = new sqlite3.Database(DBSOURCE, (err) => {
                 name TEXT UNIQUE
             );
 
-            /* --- THIS TABLE IS NEW --- */
             CREATE TABLE IF NOT EXISTS concern_synonyms (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 concern_id INTEGER,
